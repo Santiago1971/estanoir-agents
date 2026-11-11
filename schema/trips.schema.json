@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://estanoir-bots.pages.dev/schema/trips.schema.json",
+  "title": "Está no Ir trips catalogue",
+  "type": "object",
+  "required": [
+    "name",
+    "updated",
+    "trips"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "format": "uri"
+    },
+    "updated": {
+      "type": "string",
+      "description": "Date the catalogue was last updated (YYYY-MM-DD, Europe/Lisbon)."
+    },
+    "notATravelAgency": {},
+    "affiliateDisclosure": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "object"
+    },
+    "constraintsPolicy": {
+      "type": "string"
+    },
+    "typesPolicy": {
+      "type": "string",
+      "description": "first_hand = vivido; researched_plan = pesquisado."
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "license": {
+      "type": "string"
+    },
+    "trips": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/trip"
+      }
+    }
+  },
+  "$defs": {
+    "localized": {
+      "description": "A string, or a map of language codes to strings.",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "accessed": {
+          "type": "string"
+        }
+      }
+    },
+    "trip": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "first_hand",
+            "researched_plan"
+          ]
+        },
+        "kind": {
+          "type": "string"
+        },
+        "title": {
+          "$ref": "#/$defs/localized"
+        },
+        "by": {},
+        "origin": {},
+        "destination": {},
+        "countries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "nights": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "summary": {
+          "$ref": "#/$defs/localized"
+        },
+        "gettingThere": {
+          "$ref": "#/$defs/localized"
+        },
+        "transportModes": {
+          "type": "array"
+        },
+        "whereToStay": {
+          "$ref": "#/$defs/localized"
+        },
+        "threePlacesWorthIt": {
+          "type": "array"
+        },
+        "whatToCut": {
+          "$ref": "#/$defs/localized"
+        },
+        "itinerary": {
+          "type": "array"
+        },
+        "constraints": {
+          "type": "object",
+          "properties": {
+            "noCar": {},
+            "noFlight": {},
+            "withKids": {},
+            "reducedMobility": {},
+            "withDog": {},
+            "maxWalkKm": {}
+          }
+        },
+        "constraintsNote": {},
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "sourcesAccessed": {
+          "type": "string"
+        },
+        "lastVerified": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "license": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

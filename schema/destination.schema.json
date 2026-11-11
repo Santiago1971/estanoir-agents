@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://estanoir-bots.pages.dev/schema/destination.schema.json",
+  "title": "Está no Ir destination-level itinerary",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "type",
+    "lastVerified",
+    "sources"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "type": {
+      "enum": [
+        "researched_plan",
+        "first_hand",
+        "verified_facts"
+      ]
+    },
+    "status": {
+      "enum": [
+        "pesquisado",
+        "vivido"
+      ]
+    },
+    "firstHand": {
+      "type": "boolean"
+    },
+    "lastVerified": {
+      "type": "string"
+    },
+    "dateModified": {
+      "type": "string"
+    },
+    "timezoneNote": {
+      "type": "string"
+    },
+    "notATravelAgency": {
+      "type": "boolean"
+    },
+    "days": {
+      "type": "integer"
+    },
+    "directAnswer": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "outline": {
+      "type": "object"
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "noCar": {},
+        "children": {},
+        "childrenNote": {},
+        "reducedMobility": {},
+        "reducedMobilityNote": {},
+        "planB": {},
+        "wheelchair": {}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "fetched": {
+            "type": "string"
+          },
+          "rechecked": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "accessed": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "license": {
+      "type": "string"
+    },
+    "publicationStatus": {
+      "type": "string"
+    }
+  }
+}
